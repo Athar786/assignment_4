@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS demo</title>
+	<script type="text/javascript">
+		function loadform()
+		{
+			var name=document.createElement("input");
+			name.setAttribute("type","text");
+			name.setAttribute("placeholder","Enter name");
+			name.required = true;
+			name.addEventListener("blur",checkname);
+			function checkname()
+			{
+				var n = /^[a-zA-Z]*$/;
+				if(name.value == "")
+				{
+					alert("please Enter your name");
+				}
+				else if(!name.value.match(n))
+				{
+					alert('Enter valid name');
+					name.value ="";
+				}
+			}
+			
+			//document.getElementByID('')
+			
+			var email=document.createElement("input");
+			email.setAttribute("type","email");
+			email.setAttribute("placeholder","Enter email");
+			email.required = true;
+
+			email.addEventListener("blur",checkemail);
+			function checkemail()
+			{
+				var n = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+				if(email.value=="")
+				{
+					alert("please Enter your email");
+				}
+				else if(!email.value.match(n))
+				{
+					alert('Enter valid email');
+					email.value ="";
+				}
+			}
+
+			var mobile=document.createElement("input");
+			mobile.setAttribute("type","number");
+			mobile.setAttribute("placeholder","Enter mobile");
+
+			var submit=document.createElement("input");
+			submit.setAttribute("type","submit");
+			submit.addEventListener('click',sub);
+
+			function sub()
+			{
+				//alert(email.value);
+				document.cookie = name.value;
+				document.write("name = ",document.cookie);
+				document.cookie = email.value;
+				document.write("Email = ",document.cookie);
+				document.cookie = mobile.value;
+				document.write("Mobile NO = ",document.cookie);
+			}
+			
+			
+
+
+document.body.appendChild(name);
+
+document.body.appendChild(email);
+document.body.appendChild(mobile);
+document.body.appendChild(submit);
+
+		}
+		
+	</script>
+</head>
+<body onload="loadform();">
+
+</body>
+</html>
